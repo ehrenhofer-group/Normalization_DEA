@@ -103,10 +103,7 @@ if args.output_format == 'Abaqus':
     print(all_alphas)
     print('File saved in Abaqus format as: ' + filename+'.txt')
     # Export for input
-    abaqus_material_header='''*Material, name=Material-hab_DEA_100_new
-*Elastic
-1.4, 0.45
-*Expansion, type=ANISO'''
+    abaqus_material_header='*Material, name=Material-hab_DEA_100_new \n'+'*Elastic' + '\n' + str(args.emodulus/1e6)+',0.45 \n'+'*Expansion, type=ANISO'
     np.savetxt(filename+'_abaqus.inp', header=abaqus_material_header, X=all_alphas, delimiter=' ', comments='')
     print('File saved as Abaqus .inp file for integration as: ' + filename+'_abaqus.inp')
 
